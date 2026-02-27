@@ -102,3 +102,34 @@ main {
     background-color: #f8d7da;
     color: #721c24;
 }
+
+/* 🔽 Part 2 Controls Styling */
+
+.controls {
+  margin: 20px 0;
+  text-align: center;
+}
+
+.filter-buttons,
+.sort-buttons {
+  margin-bottom: 15px;
+}
+
+.controls button {
+  padding: 8px 14px;
+  margin: 5px;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  background-color: #eee;
+  transition: all 0.3s ease;
+}
+
+.controls button:hover {
+  background-color: #ddd;
+}
+
+.controls button.active {
+  background-color: #ff6b6b;
+  color: white;
+}
