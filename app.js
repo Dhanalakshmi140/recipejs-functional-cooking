@@ -94,5 +94,88 @@ const renderRecipes = (recipesToRender) => {
     recipeContainer.innerHTML = recipeCardsHTML;
 };
 
-// Initialize App
+
+
+
+
+let currentFilter = "all";
+let currentSort = "none";
+
+const filterButtons = document.querySelectorAll("[data-filter]");
+const sortButtons = document.querySelectorAll("[data-sort]");
+
+const applyFilter = (recipes, filterType) => {
+  switch (filterType) {
+    case "easy":
+      return recipes.filter(recipe => recipe.difficulty === "easy");
+    case "medium":
+      return recipes.filter(recipe => recipe.difficulty === "medium");
+    case "hard":
+      return recipes.filter(recipe => recipe.difficulty === "hard");
+    case "quick":
+      return recipes.filter(recipe => recipe.time < 30);
+    default:
+      return recipes;
+  }
+};
+
+const applySort = (recipes, sortType) => {
+  const recipesCopy = [...recipes];
+
+  switch (sortType) {
+    case "name":
+      return recipesCopy.sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+    case "time":
+      return recipesCopy.sort((a, b) =>
+        a.time - b.time
+      );
+    default:
+      return recipesCopy;
+  }
+};
+
+const updateDisplay = () => {
+  let updatedRecipes = applyFilter(recipes, currentFilter);
+  updatedRecipes = applySort(updatedRecipes, currentSort);
+  renderRecipes(updatedRecipes);
+};
+
+const updateActiveButtons = () => {
+
+  filterButtons.forEach(btn => {
+    btn.classList.remove("active");
+    if (btn.dataset.filter === currentFilter) {
+      btn.classList.add("active");
+    }
+  });
+
+  sortButtons.forEach(btn => {
+    btn.classList.remove("active");
+    if (btn.dataset.sort === currentSort) {
+      btn.classList.add("active");
+    }
+  });
+
+};
+
+filterButtons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    currentFilter = e.target.dataset.filter;
+    updateActiveButtons();
+    updateDisplay();
+  });
+});
+
+sortButtons.forEach(button => {
+  button.addEventListener("click", (e) => {
+    currentSort = e.target.dataset.sort;
+    updateActiveButtons();
+    updateDisplay();
+  });
+});
+
 renderRecipes(recipes);
+
+updateDisplay();
