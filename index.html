@@ -5,7 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RecipeJS - Your Functional Cooking Companion</title>
     <link rel="stylesheet" href="style.css">
-</head>
+
+
+
+
+    <!-- Search -->
+    <div class="search-container">
+        <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search recipes or ingredients..."
+            autocomplete="off"
+        >
+        <button id="clear-search" class="clear-btn">✕</button>
+    </div>
+</header>
+
+<main>
+
+    <!-- Filters -->
+    <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="veg">Vegetarian</button>
+        <button class="filter-btn" data-filter="nonveg">Non-Vegetarian</button>
+        <button class="filter-btn" data-filter="favorites">❤️ Favorites</button>
+    </div>
+
+    <!-- Sort -->
+    <div class="sort-container">
+        <select id="sort-select">
+            <option value="default">Sort By</option>
+            <option value="time">Cooking Time</option>
+            <option value="difficulty">Difficulty</option>
+        </select>
+    </div>
+
+    <!-- Counter -->
+    <div class="recipe-info">
+        <p id="recipe-count"></p>
+    </div>
+
+    <!-- Recipes -->
+    <div id="recipe-container" class="recipe-container"></div>
+
+</main>
+
+
 <body>
 
     <header>
@@ -38,16 +83,8 @@
 
 </section>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>RecipeJS - Part 3</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
 
-    <h1>RecipeJS - Functional Cooking Companion</h1>
+    
 
     <!-- Recipe Cards Will Render Here -->
     <div id="recipe-container"></div>
